@@ -54,7 +54,8 @@
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 3px;
-        margin-bottom: 10px;
+        margin-top: 0;
+        margin-bottom: 0; /* Убрали нижний отступ у заголовка */
         line-height: 1.2;
       }
 
@@ -64,7 +65,7 @@
         justify-content: center;
         align-items: center;
         gap: 10px; 
-        margin: 40px 0;
+        margin: 30px auto; /* Добавили одинаковый отступ сверху и снизу */
       }
 
       .number-box {
@@ -110,7 +111,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 20px 0;
+        margin: 0; /* Убрали дефолтные отступы */
       }
       
       .header-divider::before,
@@ -124,14 +125,6 @@
       }
 
       .header-divider span { font-size: 24px; color: var(--text-light); }
-
-      header p {
-        font-family: var(--font-serif);
-        font-style: italic;
-        font-size: 24px;
-        color: var(--text-light);
-        margin-top: 10px;
-      }
 
       .card {
         background-color: #fff;
@@ -329,7 +322,7 @@
       @media (max-width: 600px) {
         header h1 { font-size: 28px; }
         
-        .numbers-container { gap: 5px; margin: 20px 0; }
+        .numbers-container { gap: 5px; margin: 20px auto; }
         .number-box { width: 130px; height: 200px; }
 
         .details-grid {
@@ -358,25 +351,19 @@
           
           <!-- Цифра 3 -->
           <div class="number-box box-3">
-            <!-- 1. Сначала идет фото (мальчик) -->
             <img src="media/photo1.jpg" alt="" class="photo" />
-            <!-- 2. Сверху кладем вырезанную цифру (33.PNG) -->
             <img src="media/33.PNG" alt="" class="mask" />
           </div>
           
           <!-- Цифра 0 -->
           <div class="number-box box-0">
-            <!-- 1. Сначала идет фото (мужчина) -->
             <img src="media/photo2.jpg" alt="" class="photo" />
-            <!-- 2. Сверху кладем вырезанную цифру (000.PNG) -->
             <img src="media/000.PNG" alt="" class="mask" />
           </div>
 
         </div>
 
         <div class="header-divider"><span>🤍</span></div>
-        
-        <p>30 лет</p>
       </header>
 
       <div class="card">
