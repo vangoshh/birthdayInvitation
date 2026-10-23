@@ -19,15 +19,17 @@
 
     <style>
       /* --- ОБЩИЕ СТИЛИ И ШРИФТЫ --- */
-      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap');
+      /* Добавили Playfair Display для красивых жирных цифр */
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@900&display=swap');
 
       :root {
-        --bg-color: #f7f5f0; /* Светлый фон */
-        --text-dark: #4a2e2b; /* Темно-коричневый */
-        --text-light: #8b7368; /* Светло-коричневый */
-        --border-color: #dcd5c8; /* Цвет линий */
+        --bg-color: #f7f5f0;
+        --text-dark: #4a2e2b;
+        --text-light: #8b7368;
+        --border-color: #dcd5c8;
         --font-serif: 'Cormorant Garamond', 'Georgia', serif;
         --font-sans: 'Montserrat', 'Arial', sans-serif;
+        --font-numbers: 'Playfair Display', serif;
       }
 
       * {
@@ -52,7 +54,7 @@
       /* --- ЗАГОЛОВОК (HEADER) --- */
       header {
         text-align: center;
-        margin-bottom: 50px;
+        margin-bottom: 30px;
       }
 
       header h1 {
@@ -65,15 +67,46 @@
         line-height: 1.2;
       }
 
-      header p {
-        font-family: var(--font-serif);
-        font-style: italic;
-        font-size: 22px;
-        color: var(--text-light);
-        margin-top: 10px;
+      /* --- БЛОК С ЦИФРАМИ-ФОТОГРАФИЯМИ --- */
+      .numbers-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px; /* Расстояние между цифрами */
+        margin: 40px 0;
       }
 
-      /* Декоративная линия под заголовком */
+      .number-mask {
+        width: 160px; /* Ширина цифры */
+        height: 240px; /* Высота цифры */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: var(--font-numbers);
+        font-size: 350px; /* Размер шрифта (больше контейнера, чтобы обрезалось) */
+        line-height: 0.8;
+        color: transparent;
+        
+        /* Настройки фона */
+        background-size: cover;
+        background-position: center;
+        
+        /* Магия: обрезаем фон по контуру текста */
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+
+      /* Загружаем ваши фото как фон */
+      .number-3 {
+        background-image: url('media/3.png');
+      }
+
+      .number-0 {
+        background-image: url('media/0.png');
+        /* Для нуля можно немного сместить фото, чтобы лицо было по центру */
+        background-position: 60% center; 
+      }
+
       .header-divider {
         display: flex;
         align-items: center;
@@ -96,7 +129,15 @@
         color: var(--text-light);
       }
 
-      /* --- КАРТОЧКИ (ОБЩИЙ СТИЛЬ ДЛЯ БЛОКОВ) --- */
+      header p {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 22px;
+        color: var(--text-light);
+        margin-top: 10px;
+      }
+
+      /* --- КАРТОЧКИ --- */
       .card {
         background-color: #fff;
         border: 1px solid var(--border-color);
@@ -117,7 +158,7 @@
         margin-bottom: 30px;
       }
 
-      /* --- БЛОК ДЕТАЛЕЙ --- */
+      /* --- ДЕТАЛИ --- */
       .details-grid {
         display: flex;
         justify-content: center;
@@ -177,7 +218,7 @@
         height: 350px;
         border: 1px solid var(--border-color) !important;
         border-radius: 4px;
-        filter: grayscale(30%) sepia(10%); /* Легкий эффект винтажа */
+        filter: grayscale(30%) sepia(10%);
         transition: filter 0.3s ease;
       }
 
@@ -284,7 +325,6 @@
         height: 16px;
       }
 
-      /* Сообщение об успехе */
       .success-message {
         text-align: center;
         font-family: var(--font-serif);
@@ -295,10 +335,19 @@
         border: 1px solid var(--border-color);
       }
 
-      /* --- АДАПТИВНОСТЬ (ДЛЯ ТЕЛЕФОНОВ) --- */
+      /* --- АДАПТИВНОСТЬ --- */
       @media (max-width: 600px) {
         header h1 {
           font-size: 28px;
+        }
+        .numbers-container {
+          gap: 10px;
+          margin: 20px 0;
+        }
+        .number-mask {
+          width: 110px;
+          height: 160px;
+          font-size: 230px; /* Уменьшаем шрифт на телефоне */
         }
         .details-grid {
           flex-direction: column;
@@ -328,7 +377,18 @@
       <!-- ЗАГОЛОВОК -->
       <header>
         <h1>Юбилей<br>Константина</h1>
+        
+        <!-- БЛОК С ЦИФРАМИ (ФОТО ВНУТРИ ТЕКСТА) -->
+        <div class="numbers-container">
+          <!-- Здесь цифра "3" служит маской для фото media/3.png -->
+          <div class="number-mask number-3">3</div>
+          
+          <!-- Здесь цифра "0" служит маской для фото media/0.png -->
+          <div class="number-mask number-0">0</div>
+        </div>
+
         <div class="header-divider"><span>🤍</span></div>
+        
         <p>30 лет</p>
       </header>
 
@@ -348,7 +408,7 @@
           </div>
           
           <div class="details-item">
-            <div class="main-text">Светский Лес</div>
+            <div class="main-text">Светский Дом</div>
             <div class="sub-text">ул. Старателей, 38Б</div>
           </div>
         </div>
@@ -372,7 +432,6 @@
         </div>
         <div class="map-buttons">
           <a href="https://yandex.ru/maps/-/CXR3aHLy" target="_blank" class="btn">Открыть в Яндекс.Картах</a>
-          <button class="btn toggle-map" onclick="document.querySelector('.map-wrapper').style.display = document.querySelector('.map-wrapper').style.display === 'none' ? 'block' : 'none';">Скрыть/Показать</button>
         </div>
       </div>
 
@@ -411,13 +470,6 @@
             <input type="number" id="guests" name="guests" min="1" max="10" value="1" />
           </div>
 
-          <div id="guestDetailsContainer" class="guest-details-container"></div>
-
-          <div class="form-group">
-            <label for="allergies">Аллергии или ограничения в еде</label>
-            <textarea id="allergies" name="allergies" rows="2" placeholder="Если есть, укажите здесь"></textarea>
-          </div>
-
           <div class="form-group">
             <label for="message">Сообщение имениннику</label>
             <textarea id="message" name="message" rows="3" placeholder="Необязательно"></textarea>
@@ -432,7 +484,5 @@
       </div>
       
     </div>
-
-    <script src="script.js"></script>
   </body>
 </html>
