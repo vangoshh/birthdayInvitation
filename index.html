@@ -5,22 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Юбилей Константина — 30 лет</title>
     
-    <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="media/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="media/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="media/favicon-16x16.png" />
     <link rel="manifest" href="media/site.webmanifest" />
 
-    <!-- Social Media Sharing -->
     <meta property="og:title" content="Юбилей Константина — 30 лет" />
     <meta property="og:description" content="Приглашение на праздник" />
     <meta property="og:image" content="media/og-image.jpg" />
     <meta property="og:url" content="https://vangoshh.github.io/birthdayInvitation" />
 
     <style>
-      /* --- ОБЩИЕ СТИЛИ И ШРИФТЫ --- */
-      /* Добавили Playfair Display для красивых жирных цифр */
-      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@900&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap');
 
       :root {
         --bg-color: #f7f5f0;
@@ -29,12 +24,9 @@
         --border-color: #dcd5c8;
         --font-serif: 'Cormorant Garamond', 'Georgia', serif;
         --font-sans: 'Montserrat', 'Arial', sans-serif;
-        --font-numbers: 'Playfair Display', serif;
       }
 
-      * {
-        box-sizing: border-box;
-      }
+      * { box-sizing: border-box; }
 
       body {
         background-color: var(--bg-color);
@@ -51,7 +43,6 @@
         padding: 40px 20px;
       }
 
-      /* --- ЗАГОЛОВОК (HEADER) --- */
       header {
         text-align: center;
         margin-bottom: 30px;
@@ -59,7 +50,7 @@
 
       header h1 {
         font-family: var(--font-serif);
-        font-size: 36px;
+        font-size: 38px;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 3px;
@@ -67,46 +58,45 @@
         line-height: 1.2;
       }
 
-      /* --- БЛОК С ЦИФРАМИ-ФОТОГРАФИЯМИ --- */
-      .numbers-container {
+      /* --- БЛОК С ФОТОГРАФИЯМИ (КРУГИ) --- */
+      .photos-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 20px; /* Расстояние между цифрами */
+        gap: 30px;
         margin: 40px 0;
       }
 
-      .number-mask {
-        width: 160px; /* Ширина цифры */
-        height: 240px; /* Высота цифры */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: var(--font-numbers);
-        font-size: 350px; /* Размер шрифта (больше контейнера, чтобы обрезалось) */
-        line-height: 0.8;
-        color: transparent;
-        
-        /* Настройки фона */
-        background-size: cover;
-        background-position: center;
-        
-        /* Магия: обрезаем фон по контуру текста */
-        -webkit-background-clip: text;
-        background-clip: text;
+      .photo-circle {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%; /* Делает фото круглым */
+        overflow: hidden;
+        border: 2px solid #fff; /* Белая рамка вокруг */
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08); /* Легкая тень */
+        position: relative;
       }
 
-      /* Загружаем ваши фото как фон */
-      .number-3 {
-        background-image: url('media/3.png');
+      /* Немного наклоняем круги друг к другу, чтобы было стильно */
+      .photo-circle:nth-child(1) {
+        transform: rotate(-5deg);
+        z-index: 1;
+      }
+      
+      .photo-circle:nth-child(2) {
+        transform: rotate(5deg);
+        z-index: 2;
+        margin-left: -40px; /* Накладываем один на другой */
       }
 
-      .number-0 {
-        background-image: url('media/0.png');
-        /* Для нуля можно немного сместить фото, чтобы лицо было по центру */
-        background-position: 60% center; 
+      .photo-circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Заполняет круг без искажений */
+        object-position: center 20%; /* Центрирует на лице */
       }
 
+      /* --- ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ --- */
       .header-divider {
         display: flex;
         align-items: center;
@@ -124,15 +114,12 @@
         margin: 0 15px;
       }
 
-      .header-divider span {
-        font-size: 24px;
-        color: var(--text-light);
-      }
+      .header-divider span { font-size: 24px; color: var(--text-light); }
 
       header p {
         font-family: var(--font-serif);
         font-style: italic;
-        font-size: 22px;
+        font-size: 24px;
         color: var(--text-light);
         margin-top: 10px;
       }
@@ -337,18 +324,15 @@
 
       /* --- АДАПТИВНОСТЬ --- */
       @media (max-width: 600px) {
-        header h1 {
-          font-size: 28px;
+        header h1 { font-size: 28px; }
+        
+        .photos-container { gap: 10px; }
+        .photo-circle {
+          width: 140px;
+          height: 140px;
         }
-        .numbers-container {
-          gap: 10px;
-          margin: 20px 0;
-        }
-        .number-mask {
-          width: 110px;
-          height: 160px;
-          font-size: 230px; /* Уменьшаем шрифт на телефоне */
-        }
+        .photo-circle:nth-child(2) { margin-left: -20px; }
+
         .details-grid {
           flex-direction: column;
           gap: 20px;
@@ -358,16 +342,9 @@
           border-bottom: 1px solid var(--border-color);
           padding-bottom: 20px;
         }
-        .map-buttons {
-          flex-direction: column;
-        }
-        .radio-options {
-          flex-direction: column;
-          gap: 10px;
-        }
-        .card {
-          padding: 30px 20px;
-        }
+        .map-buttons { flex-direction: column; }
+        .radio-options { flex-direction: column; gap: 10px; }
+        .card { padding: 30px 20px; }
       }
     </style>
   </head>
@@ -378,13 +355,14 @@
       <header>
         <h1>Юбилей<br>Константина</h1>
         
-        <!-- БЛОК С ЦИФРАМИ (ФОТО ВНУТРИ ТЕКСТА) -->
-        <div class="numbers-container">
-          <!-- Здесь цифра "3" служит маской для фото media/3.png -->
-          <div class="number-mask number-3">3</div>
-          
-          <!-- Здесь цифра "0" служит маской для фото media/0.png -->
-          <div class="number-mask number-0">0</div>
+        <!-- БЛОК С ФОТОГРАФИЯМИ -->
+        <div class="photos-container">
+          <div class="photo-circle">
+            <img src="media/3.png" alt="Детство" />
+          </div>
+          <div class="photo-circle">
+            <img src="media/0.png" alt="Сейчас" />
+          </div>
         </div>
 
         <div class="header-divider"><span>🤍</span></div>
