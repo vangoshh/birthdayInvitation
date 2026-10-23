@@ -45,7 +45,8 @@
 
       header {
         text-align: center;
-        margin-bottom: 30px;
+        /* Убрали жесткий отступ снизу, чтобы карточка прижалась к сердечку */
+        margin-bottom: 20px; 
       }
 
       header h1 {
@@ -55,7 +56,7 @@
         text-transform: uppercase;
         letter-spacing: 3px;
         margin-top: 0;
-        margin-bottom: 0; /* Убрали нижний отступ у заголовка */
+        margin-bottom: 0; 
         line-height: 1.2;
       }
 
@@ -65,7 +66,8 @@
         justify-content: center;
         align-items: center;
         gap: 10px; 
-        margin: 30px auto; /* Добавили одинаковый отступ сверху и снизу */
+        /* СВЕРХУ 30px, СНИЗУ 0 */
+        margin: 30px auto 0 auto; 
       }
 
       .number-box {
@@ -111,7 +113,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0; /* Убрали дефолтные отступы */
+        /* УБРАЛИ ВСЕ ОТСТУПЫ, ЧТОБЫ СЕРДЕЧКО ПРИЖАЛОСЬ К ЦИФРАМ */
+        margin: 0; 
       }
       
       .header-divider::before,
@@ -322,7 +325,7 @@
       @media (max-width: 600px) {
         header h1 { font-size: 28px; }
         
-        .numbers-container { gap: 5px; margin: 20px auto; }
+        .numbers-container { gap: 5px; margin: 20px auto 0 auto; }
         .number-box { width: 130px; height: 200px; }
 
         .details-grid {
@@ -351,11 +354,13 @@
           
           <!-- Цифра 3 -->
           <div class="number-box box-3">
+            <img src="media/photo1.jpg" alt="" class="photo" />
             <img src="media/33.PNG" alt="" class="mask" />
           </div>
           
           <!-- Цифра 0 -->
           <div class="number-box box-0">
+            <img src="media/photo2.jpg" alt="" class="photo" />
             <img src="media/000.PNG" alt="" class="mask" />
           </div>
 
