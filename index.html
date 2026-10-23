@@ -19,11 +19,11 @@
 
       :root {
         --bg-color: #121417; 
-        --card-bg: #1a1d21; /* Чуть светлее фона для контраста */
+        --card-bg: #1a1d21; 
         --text-main: #e8eaed; 
         --text-muted: #8b929a; 
         --border-color: #2d3238; 
-        --accent-color: #b8735a; /* Медный */
+        --accent-color: #b8735a; 
         --font-serif: 'Cormorant Garamond', 'Georgia', serif;
         --font-sans: 'Montserrat', 'Arial', sans-serif;
       }
@@ -32,7 +32,6 @@
 
       body {
         background-color: var(--bg-color);
-        /* Добавили едва заметный геометрический узор на фон */
         background-image: 
           linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
           linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
@@ -50,7 +49,6 @@
         padding: 40px 20px;
       }
 
-      /* --- АНИМАЦИЯ ПОЯВЛЕНИЯ --- */
       .fade-in {
         animation: fadeInUp 0.8s ease-out forwards;
         opacity: 0;
@@ -186,7 +184,6 @@
         color: var(--text-main);
       }
 
-      /* --- ДЕТАЛИ С ИКОНКАМИ --- */
       .details-grid {
         display: flex;
         justify-content: center;
@@ -250,7 +247,6 @@
         color: var(--accent-color);
       }
 
-      /* --- КАРТА --- */
       .map-wrapper {
         position: relative;
         border: 1px solid var(--border-color);
@@ -331,7 +327,7 @@
       }
 
       button[type="submit"]:hover {
-        background-color: #a05c45; /* Темнее при наведении */
+        background-color: #a05c45;
       }
 
       .form-group {
@@ -445,15 +441,15 @@
       <div class="countdown-container fade-in delay-1">
         <div class="countdown-item">
           <div class="countdown-number" id="days">00</div>
-          <div class="countdown-label">Дней</div>
+          <div class="countdown-label" id="days-label">Дней</div>
         </div>
         <div class="countdown-item">
           <div class="countdown-number" id="hours">00</div>
-          <div class="countdown-label">Часов</div>
+          <div class="countdown-label" id="hours-label">Часов</div>
         </div>
         <div class="countdown-item">
           <div class="countdown-number" id="minutes">00</div>
-          <div class="countdown-label">Минут</div>
+          <div class="countdown-label" id="minutes-label">Минут</div>
         </div>
       </div>
 
@@ -550,11 +546,16 @@
       
     </div>
 
-    <!-- СКРИПТ ТАЙМЕРА -->
+    <!-- СКРИПТ ТАЙМЕРА СО СКЛОНЕНИЕМ -->
     <script>
       // Установите дату и время события здесь: Год, Месяц (0-11), День, Часы, Минуты
-      // 15 ноября 2026, 17:00 = (2026, 10, 15, 17, 0)
       const eventDate = new Date(2026, 10, 15, 17, 0, 0).getTime();
+
+      // Функция для правильного склонения слов
+      function getDeclension(number, titles) {
+        const cases = [2, 0, 1, 1, 1, 2];
+        return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
+      }
 
       const timer = setInterval(function() {
         const now = new Date().getTime();
@@ -572,10 +573,15 @@
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 
-        // Добавляем ведущие нули
+        // Выводим числа с ведущими нулями
         document.getElementById("days").innerText = days < 10 ? "0" + days : days;
         document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
         document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+
+        // Меняем подписи в зависимости от числа
+        document.getElementById("days-label").innerText = getDeclension(days, ['День', 'Дня', 'Дней']);
+        document.getElementById("hours-label").innerText = getDeclension(hours, ['Час', 'Часа', 'Часов']);
+        document.getElementById("minutes-label").innerText = getDeclension(minutes, ['Минута', 'Минуты', 'Минут']);
       }, 1000);
     </script>
   </body>
