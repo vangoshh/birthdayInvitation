@@ -71,42 +71,41 @@
         position: relative;
         width: 180px;
         height: 280px;
-        /* Убираем overflow: hidden, чтобы цифры не обрезались, если они шире блока */
       }
 
       /* Фотографии, которые лежат под цифрами */
       .number-box img.photo {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Заполняет блок */
+        object-fit: cover;
         position: absolute;
         top: 0;
         left: 0;
-        z-index: 1; /* Фото на заднем плане */
-        border-radius: 15px; /* Слегка скругляем фон */
+        z-index: 1;
+        border-radius: 15px;
       }
 
       /* Настройки кадрирования фото */
       .box-3 img.photo {
-        object-position: 50% 30%; /* Фото мальчика */
+        object-position: 50% 30%;
       }
       .box-0 img.photo {
-        object-position: 50% 20%; /* Фото мужчины */
+        object-position: 50% 20%;
       }
 
-      /* Вырезанные цифры (33.PNG и 00.JPG) */
+      /* Вырезанные цифры */
       .number-box img.mask {
         width: 100%;
         height: 100%;
         position: absolute;
         top: 0;
         left: 0;
-        z-index: 2; /* Цифра лежит ПОВЕРХ фото */
+        z-index: 2;
         pointer-events: none;
         object-fit: contain;
       }
 
-      /* --- ОСТАЛЬНЫЕ СТИЛИ (без изменений) --- */
+      /* --- ОСТАЛЬНЫЕ СТИЛИ --- */
       .header-divider {
         display: flex;
         align-items: center;
@@ -361,7 +360,7 @@
           <div class="number-box box-3">
             <!-- 1. Сначала идет фото (мальчик) -->
             <img src="media/photo1.jpg" alt="Детство" class="photo" />
-            <!-- 2. Сверху кладем вырезанную цифру -->
+            <!-- 2. Сверху кладем вырезанную цифру (33.PNG) -->
             <img src="media/33.PNG" alt="3" class="mask" />
           </div>
           
@@ -369,8 +368,8 @@
           <div class="number-box box-0">
             <!-- 1. Сначала идет фото (мужчина) -->
             <img src="media/photo2.jpg" alt="Сейчас" class="photo" />
-            <!-- 2. Сверху кладем вырезанную цифру -->
-            <img src="media/00.JPG" alt="0" class="mask" />
+            <!-- 2. Сверху кладем вырезанную цифру (000.PNG) -->
+            <img src="media/000.PNG" alt="0" class="mask" />
           </div>
 
         </div>
