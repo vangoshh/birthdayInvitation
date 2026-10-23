@@ -3,9 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Юбилей у Константина 30 ЛЕТ!</title>
-    <link rel="stylesheet" href="styles.css" />
-
+    <title>Юбилей Константина — 30 лет</title>
+    
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="media/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="media/favicon-32x32.png" />
@@ -13,158 +12,342 @@
     <link rel="manifest" href="media/site.webmanifest" />
 
     <!-- Social Media Sharing -->
-    <meta property="og:title" content="Юбилей у Константина 30 ЛЕТ!" />
-    <meta property="og:description" content="Всех жду" />
+    <meta property="og:title" content="Юбилей Константина — 30 лет" />
+    <meta property="og:description" content="Приглашение на праздник" />
     <meta property="og:image" content="media/og-image.jpg" />
     <meta property="og:url" content="https://vangoshh.github.io/birthdayInvitation" />
 
-    <!-- СТИЛИ ДЛЯ БЛОКА ДЕТАЛЕЙ (в стиле строгого приглашения) -->
     <style>
-      .elegant-details {
-        font-family: 'Georgia', 'Times New Roman', serif;
-        color: #4a2e2b; /* Темно-коричневый цвет */
-        text-align: center;
-        background-color: #f7f5f0; /* Светлый фон */
-        padding: 40px 20px;
-        margin: 20px auto;
-        border-radius: 4px;
+      /* --- ОБЩИЕ СТИЛИ И ШРИФТЫ --- */
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap');
+
+      :root {
+        --bg-color: #f7f5f0; /* Светлый фон */
+        --text-dark: #4a2e2b; /* Темно-коричневый */
+        --text-light: #8b7368; /* Светло-коричневый */
+        --border-color: #dcd5c8; /* Цвет линий */
+        --font-serif: 'Cormorant Garamond', 'Georgia', serif;
+        --font-sans: 'Montserrat', 'Arial', sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-dark);
+        font-family: var(--font-sans);
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+      }
+
+      .container {
         max-width: 800px;
-        border-top: 1px solid #dcd5c8;
-        border-bottom: 1px solid #dcd5c8;
+        margin: 0 auto;
+        padding: 40px 20px;
       }
-      
-      .elegant-details h2 {
-        font-size: 28px;
-        font-weight: normal;
+
+      /* --- ЗАГОЛОВОК (HEADER) --- */
+      header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      header h1 {
+        font-family: var(--font-serif);
+        font-size: 36px;
+        font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 25px;
-        color: #4a2e2b;
+        letter-spacing: 3px;
+        margin-bottom: 10px;
+        line-height: 1.2;
       }
-      
-      .elegant-details .heart-divider {
-        font-size: 20px;
-        color: #8b7368;
-        margin-bottom: 30px;
+
+      header p {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 22px;
+        color: var(--text-light);
+        margin-top: 10px;
+      }
+
+      /* Декоративная линия под заголовком */
+      .header-divider {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin: 20px 0;
       }
       
-      .elegant-details .heart-divider::before,
-      .elegant-details .heart-divider::after {
+      .header-divider::before,
+      .header-divider::after {
         content: "";
         display: block;
-        width: 60px;
+        width: 80px;
         height: 1px;
-        background-color: #dcd5c8;
+        background-color: var(--border-color);
         margin: 0 15px;
       }
 
-      .elegant-grid {
+      .header-divider span {
+        font-size: 24px;
+        color: var(--text-light);
+      }
+
+      /* --- КАРТОЧКИ (ОБЩИЙ СТИЛЬ ДЛЯ БЛОКОВ) --- */
+      .card {
+        background-color: #fff;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        padding: 40px 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+      }
+
+      .card h2, .card h3 {
+        font-family: var(--font-serif);
+        font-size: 28px;
+        font-weight: 400;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-top: 0;
+        margin-bottom: 30px;
+      }
+
+      /* --- БЛОК ДЕТАЛЕЙ --- */
+      .details-grid {
         display: flex;
         justify-content: center;
         align-items: stretch;
         margin-bottom: 30px;
       }
 
-      .elegant-item {
+      .details-item {
         flex: 1;
-        padding: 0 20px;
+        text-align: center;
+        padding: 0 15px;
         display: flex;
         flex-direction: column;
         justify-content: center;
       }
 
-      .elegant-item:not(:last-child) {
-        border-right: 1px solid #dcd5c8; /* Вертикальные линии */
+      .details-item:not(:last-child) {
+        border-right: 1px solid var(--border-color);
       }
 
-      .elegant-item .main-text {
-        font-size: 22px;
-        margin: 5px 0;
-        text-transform: uppercase;
+      .details-item .main-text {
+        font-family: var(--font-serif);
+        font-size: 24px;
+        margin-bottom: 5px;
       }
 
-      .elegant-item .sub-text {
-        font-size: 16px;
-        margin: 5px 0;
+      .details-item .sub-text {
+        font-size: 14px;
         text-transform: uppercase;
         letter-spacing: 1px;
+        color: var(--text-light);
       }
 
       .dress-code {
-        font-size: 16px;
+        text-align: center;
+        font-size: 14px;
         text-transform: uppercase;
         letter-spacing: 1px;
+        margin-top: 30px;
+        padding-top: 30px;
+        border-top: 1px solid var(--border-color);
       }
       
       .dress-code span {
         display: block;
-        font-size: 24px;
+        font-family: var(--font-serif);
+        font-size: 26px;
         font-style: italic;
         text-transform: lowercase;
         margin-top: 5px;
-        font-family: 'Georgia', serif;
+        color: var(--text-dark);
       }
 
+      /* --- КАРТА --- */
+      .map-wrapper iframe {
+        width: 100%;
+        height: 350px;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 4px;
+        filter: grayscale(30%) sepia(10%); /* Легкий эффект винтажа */
+        transition: filter 0.3s ease;
+      }
+
+      .map-wrapper iframe:hover {
+        filter: grayscale(0%) sepia(0%);
+      }
+
+      .map-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      /* --- КНОПКИ --- */
+      .btn {
+        display: inline-block;
+        background-color: transparent;
+        color: var(--text-dark);
+        border: 1px solid var(--text-dark);
+        padding: 12px 25px;
+        font-family: var(--font-sans);
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .btn:hover {
+        background-color: var(--text-dark);
+        color: var(--bg-color);
+      }
+
+      button[type="submit"] {
+        width: 100%;
+        background-color: var(--text-dark);
+        color: #fff;
+        border: none;
+        padding: 15px;
+        font-family: var(--font-sans);
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 20px;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #3a211f;
+      }
+
+      /* --- ФОРМА (RSVP) --- */
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+        color: var(--text-light);
+      }
+
+      .form-group input[type="text"],
+      .form-group input[type="number"],
+      .form-group textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-color);
+        font-family: var(--font-sans);
+        font-size: 15px;
+        color: var(--text-dark);
+        outline: none;
+        transition: border-color 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-color: var(--text-light);
+      }
+
+      .radio-options {
+        display: flex;
+        gap: 20px;
+      }
+
+      .radio-option {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+      }
+      
+      .radio-option input[type="radio"] {
+        accent-color: var(--text-dark);
+        width: 16px;
+        height: 16px;
+      }
+
+      /* Сообщение об успехе */
+      .success-message {
+        text-align: center;
+        font-family: var(--font-serif);
+        font-size: 20px;
+        color: var(--text-dark);
+        padding: 20px;
+        background-color: #f0ece1;
+        border: 1px solid var(--border-color);
+      }
+
+      /* --- АДАПТИВНОСТЬ (ДЛЯ ТЕЛЕФОНОВ) --- */
       @media (max-width: 600px) {
-        .elegant-grid {
+        header h1 {
+          font-size: 28px;
+        }
+        .details-grid {
+          flex-direction: column;
+          gap: 20px;
+        }
+        .details-item:not(:last-child) {
+          border-right: none;
+          border-bottom: 1px solid var(--border-color);
+          padding-bottom: 20px;
+        }
+        .map-buttons {
           flex-direction: column;
         }
-        .elegant-item:not(:last-child) {
-          border-right: none;
-          border-bottom: 1px solid #dcd5c8;
-          padding-bottom: 20px;
-          margin-bottom: 20px;
+        .radio-options {
+          flex-direction: column;
+          gap: 10px;
         }
-        .elegant-item {
-          padding: 10px 20px;
+        .card {
+          padding: 30px 20px;
         }
       }
     </style>
   </head>
   <body>
     <div class="container">
+      
+      <!-- ЗАГОЛОВОК -->
       <header>
-        <div class="balloons">🎈🎀🎈</div>
-        <h1>Юбилей у Константина 30 ЛЕТ!</h1>
-
-        <!-- Блок с видео/фото закомментирован -->
-        <!--
-        <div class="video-container">
-          <video id="birthdayVideo" width="100%" height="auto" controls autoplay muted loop playsinline poster="media/video-placeholder.jpg" preload="auto">
-            <source src="media/birthday-video.mp4" type="video/mp4" />
-            Ваш браузер не поддерживает видео.
-          </video>
-          <div id="fallbackContainer" style="display: none;">
-            <img id="videoFallback" src="media/birthday-animation.gif" alt="Юбилей у Константина" width="100%" height="auto" />
-          </div>
-        </div>
-        -->
-
-        <p>Всех жду</p>
-        <div class="balloons">🎁🧸🎂</div>
+        <h1>Юбилей<br>Константина</h1>
+        <div class="header-divider"><span>🤍</span></div>
+        <p>30 лет</p>
       </header>
 
-      <!-- НОВЫЙ БЛОК В СТИЛЕ ВТОРОГО ФОТО -->
-      <div class="elegant-details">
+      <!-- ДЕТАЛИ -->
+      <div class="card">
         <h2>Детали встречи</h2>
         
-        <div class="heart-divider">🤍</div> <!-- Символ разделителя -->
-
-        <div class="elegant-grid">
-          <div class="elegant-item">
+        <div class="details-grid">
+          <div class="details-item">
             <div class="main-text">15 Ноября</div>
             <div class="sub-text">Воскресенье</div>
           </div>
           
-          <div class="elegant-item">
+          <div class="details-item">
             <div class="main-text">17:00</div>
             <div class="sub-text">Начало</div>
           </div>
           
-          <div class="elegant-item">
+          <div class="details-item">
             <div class="main-text">Светский Дом</div>
             <div class="sub-text">ул. Старателей, 38Б</div>
           </div>
@@ -176,80 +359,80 @@
         </div>
       </div>
 
-      <!-- БЛОК С КАРТОЙ -->
-      <div class="map-container" style="max-width: 800px; margin: 0 auto 30px auto;">
-        <h3>Карта</h3>
+      <!-- КАРТА -->
+      <div class="card">
+        <h3>Локация</h3>
         <div class="map-wrapper">
           <iframe
             src="https://yandex.ru/map-widget/v1/?ll=60.032432%2C56.913784&z=17&pt=60.032432,56.913784,pm2rdm"
-            width="100%"
-            height="450"
-            style="border: 0"
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
         <div class="map-buttons">
-          <a href="https://yandex.ru/maps/-/CXR3aHLy" target="_blank" class="map-btn">Открыть в Яндекс.Картах</a>
-          <button class="map-btn toggle-map">Скрыть карту</button>
+          <a href="https://yandex.ru/maps/-/CXR3aHLy" target="_blank" class="btn">Открыть в Яндекс.Картах</a>
+          <button class="btn toggle-map" onclick="document.querySelector('.map-wrapper').style.display = document.querySelector('.map-wrapper').style.display === 'none' ? 'block' : 'none';">Скрыть/Показать</button>
         </div>
       </div>
 
-      <div class="form-container">
-        <h2>Подтверждение присутствия</h2>
+      <!-- ФОРМА -->
+      <div class="card">
+        <h2>Подтверждение</h2>
+        <p style="text-align: center; font-size: 14px; color: var(--text-light); margin-bottom: 30px;">
+          Пожалуйста, сообщите о своем присутствии
+        </p>
 
         <form id="rsvpForm" action="https://formspree.io/f/mvgkzbqp" method="POST">
           <input type="hidden" name="_subject" value="RSVP на юбилей Константина" />
           <input type="hidden" name="_next" value="https://vangoshh.github.io/birthdayInvitation/?success=true" />
 
           <div class="form-group">
-            <label for="name">Ваше имя:</label>
-            <input type="text" id="name" name="name" required />
+            <label for="name">Ваше имя</label>
+            <input type="text" id="name" name="name" required placeholder="Имя и фамилия" />
           </div>
 
           <div class="form-group">
             <label>Вы придёте?</label>
             <div class="radio-options">
-              <div class="radio-option">
-                <input type="radio" id="attend-yes" name="attendance" value="yes" required />
-                <label for="attend-yes">Да, буду!</label>
-              </div>
-              <div class="radio-option">
-                <input type="radio" id="attend-no" name="attendance" value="no" />
-                <label for="attend-no">К сожалению, не смогу</label>
-              </div>
+              <label class="radio-option">
+                <input type="radio" name="attendance" value="yes" required />
+                <span>Да, буду!</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="attendance" value="no" />
+                <span>К сожалению, не смогу</span>
+              </label>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="guests">Количество гостей (включая вас):</label>
+            <label for="guests">Количество гостей (включая вас)</label>
             <input type="number" id="guests" name="guests" min="1" max="10" value="1" />
           </div>
 
           <div id="guestDetailsContainer" class="guest-details-container"></div>
 
           <div class="form-group">
-            <label for="allergies">Аллергии или ограничения в еде?</label>
-            <textarea id="allergies" name="allergies" rows="3"></textarea>
+            <label for="allergies">Аллергии или ограничения в еде</label>
+            <textarea id="allergies" name="allergies" rows="2" placeholder="Если есть, укажите здесь"></textarea>
           </div>
 
           <div class="form-group">
-            <label for="message">Сообщение Константину (необязательно):</label>
-            <textarea id="message" name="message" rows="3"></textarea>
+            <label for="message">Сообщение имениннику</label>
+            <textarea id="message" name="message" rows="3" placeholder="Необязательно"></textarea>
           </div>
 
-          <button type="submit">Отправить</button>
+          <button type="submit">Отправить ответ</button>
         </form>
 
-        <div id="successMessage" class="success-message" style="display: none">
-          Спасибо за ответ! Будем рады видеть вас на празднике.
+        <div id="successMessage" class="success-message" style="display: none; margin-top: 20px;">
+          Спасибо! Ваш ответ отправлен.
         </div>
       </div>
+      
     </div>
 
-    <div id="confetti-container"></div>
-    <div id="balloon-container"></div>
     <script src="script.js"></script>
   </body>
 </html>
