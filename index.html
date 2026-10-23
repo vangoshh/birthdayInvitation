@@ -7,31 +7,122 @@
     <link rel="stylesheet" href="styles.css" />
 
     <!-- Favicon -->
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="media/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="media/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="media/favicon-16x16.png"
-    />
+    <link rel="apple-touch-icon" sizes="180x180" href="media/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="media/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="media/favicon-16x16.png" />
     <link rel="manifest" href="media/site.webmanifest" />
 
     <!-- Social Media Sharing -->
     <meta property="og:title" content="Юбилей у Константина 30 ЛЕТ!" />
     <meta property="og:description" content="Всех жду" />
     <meta property="og:image" content="media/og-image.jpg" />
-    <!-- ЗАМЕНИ на свой будущий адрес GitHub Pages -->
     <meta property="og:url" content="https://vangoshh.github.io/birthdayInvitation" />
+
+    <!-- СТИЛИ ДЛЯ БЛОКА ДЕТАЛЕЙ (в стиле строгого приглашения) -->
+    <style>
+      .elegant-details {
+        font-family: 'Georgia', 'Times New Roman', serif;
+        color: #4a2e2b; /* Темно-коричневый цвет */
+        text-align: center;
+        background-color: #f7f5f0; /* Светлый фон */
+        padding: 40px 20px;
+        margin: 20px auto;
+        border-radius: 4px;
+        max-width: 800px;
+        border-top: 1px solid #dcd5c8;
+        border-bottom: 1px solid #dcd5c8;
+      }
+      
+      .elegant-details h2 {
+        font-size: 28px;
+        font-weight: normal;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 25px;
+        color: #4a2e2b;
+      }
+      
+      .elegant-details .heart-divider {
+        font-size: 20px;
+        color: #8b7368;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .elegant-details .heart-divider::before,
+      .elegant-details .heart-divider::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 1px;
+        background-color: #dcd5c8;
+        margin: 0 15px;
+      }
+
+      .elegant-grid {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        margin-bottom: 30px;
+      }
+
+      .elegant-item {
+        flex: 1;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .elegant-item:not(:last-child) {
+        border-right: 1px solid #dcd5c8; /* Вертикальные линии */
+      }
+
+      .elegant-item .main-text {
+        font-size: 22px;
+        margin: 5px 0;
+        text-transform: uppercase;
+      }
+
+      .elegant-item .sub-text {
+        font-size: 16px;
+        margin: 5px 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .dress-code {
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      
+      .dress-code span {
+        display: block;
+        font-size: 24px;
+        font-style: italic;
+        text-transform: lowercase;
+        margin-top: 5px;
+        font-family: 'Georgia', serif;
+      }
+
+      @media (max-width: 600px) {
+        .elegant-grid {
+          flex-direction: column;
+        }
+        .elegant-item:not(:last-child) {
+          border-right: none;
+          border-bottom: 1px solid #dcd5c8;
+          padding-bottom: 20px;
+          margin-bottom: 20px;
+        }
+        .elegant-item {
+          padding: 10px 20px;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -39,34 +130,15 @@
         <div class="balloons">🎈🎀🎈</div>
         <h1>Юбилей у Константина 30 ЛЕТ!</h1>
 
-        <!-- Блок с видео/фото временно закомментирован.
-             Чтобы вернуть — убери <!-- и --> вокруг этого блока. -->
+        <!-- Блок с видео/фото закомментирован -->
         <!--
         <div class="video-container">
-          <video
-            id="birthdayVideo"
-            width="100%"
-            height="auto"
-            controls
-            autoplay
-            muted
-            loop
-            playsinline
-            poster="media/video-placeholder.jpg"
-            preload="auto"
-          >
+          <video id="birthdayVideo" width="100%" height="auto" controls autoplay muted loop playsinline poster="media/video-placeholder.jpg" preload="auto">
             <source src="media/birthday-video.mp4" type="video/mp4" />
             Ваш браузер не поддерживает видео.
           </video>
-
           <div id="fallbackContainer" style="display: none;">
-            <img
-              id="videoFallback"
-              src="media/birthday-animation.gif"
-              alt="Юбилей у Константина"
-              width="100%"
-              height="auto"
-            />
+            <img id="videoFallback" src="media/birthday-animation.gif" alt="Юбилей у Константина" width="100%" height="auto" />
           </div>
         </div>
         -->
@@ -75,76 +147,61 @@
         <div class="balloons">🎁🧸🎂</div>
       </header>
 
-      <div class="event-details">
+      <!-- НОВЫЙ БЛОК В СТИЛЕ ВТОРОГО ФОТО -->
+      <div class="elegant-details">
         <h2>Детали встречи</h2>
-        <p>
-          <strong>Дата:</strong> 15.11.2026 (Воскресенье)
-        </p>
-        <p>
-          <strong>Время:</strong> 17:00
-        </p>
-        <p>
-          <strong>Место:</strong> ул. Старателей, 38Б, Первоуральск
-        </p>
+        
+        <div class="heart-divider">🤍</div> <!-- Символ разделителя -->
 
-        <div class="map-container">
-          <h3>Карта</h3>
-          <div class="map-wrapper">
-            <iframe
-              src="https://yandex.ru/map-widget/v1/?ll=60.032432%2C56.913784&z=17&pt=60.032432,56.913784,pm2rdm"
-              width="600"
-              height="450"
-              style="border: 0"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
+        <div class="elegant-grid">
+          <div class="elegant-item">
+            <div class="main-text">15 Ноября</div>
+            <div class="sub-text">Воскресенье</div>
           </div>
-          <div class="map-buttons">
-            <a
-              href="https://yandex.ru/maps/-/CXR3aHLy"
-              target="_blank"
-              class="map-btn"
-              >Открыть в Яндекс.Картах</a
-            >
-            <button class="map-btn toggle-map">Скрыть карту</button>
+          
+          <div class="elegant-item">
+            <div class="main-text">17:00</div>
+            <div class="sub-text">Начало</div>
+          </div>
+          
+          <div class="elegant-item">
+            <div class="main-text">Светский Дом</div>
+            <div class="sub-text">ул. Старателей, 38Б</div>
           </div>
         </div>
 
-        <p>
-          <strong>Тема:</strong> Юбилей
-        </p>
-        <p>
-          Приходите разделить с нами этот особенный день — вкусные угощения,
-          смех и тёплые семейные моменты. Давайте создадим приятные воспоминания
-          вместе!
-        </p>
+        <div class="dress-code">
+          Дресс-код:
+          <span>casual</span>
+        </div>
+      </div>
+
+      <!-- БЛОК С КАРТОЙ -->
+      <div class="map-container" style="max-width: 800px; margin: 0 auto 30px auto;">
+        <h3>Карта</h3>
+        <div class="map-wrapper">
+          <iframe
+            src="https://yandex.ru/map-widget/v1/?ll=60.032432%2C56.913784&z=17&pt=60.032432,56.913784,pm2rdm"
+            width="100%"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+        <div class="map-buttons">
+          <a href="https://yandex.ru/maps/-/CXR3aHLy" target="_blank" class="map-btn">Открыть в Яндекс.Картах</a>
+          <button class="map-btn toggle-map">Скрыть карту</button>
+        </div>
       </div>
 
       <div class="form-container">
         <h2>Подтверждение присутствия</h2>
 
-        <!-- ЗАМЕНИ action на свой endpoint Formspree:
-             1. Зарегистрируйся на formspree.io
-             2. Создай форму, получи ссылку вида https://formspree.io/f/xxxxxx
-             3. Вставь её в action
-        -->
-        <form
-          id="rsvpForm"
-          action="https://formspree.io/f/mvgkzbqp"
-          method="POST"
-        >
-          <input
-            type="hidden"
-            name="_subject"
-            value="RSVP на юбилей Константина"
-          />
-          <!-- ЗАМЕНИ на свой будущий адрес GitHub Pages -->
-          <input
-            type="hidden"
-            name="_next"
-            value="https://vangoshh.github.io/birthdayInvitation/?success=true"
-          />
+        <form id="rsvpForm" action="https://formspree.io/f/mvgkzbqp" method="POST">
+          <input type="hidden" name="_subject" value="RSVP на юбилей Константина" />
+          <input type="hidden" name="_next" value="https://vangoshh.github.io/birthdayInvitation/?success=true" />
 
           <div class="form-group">
             <label for="name">Ваше имя:</label>
@@ -155,67 +212,37 @@
             <label>Вы придёте?</label>
             <div class="radio-options">
               <div class="radio-option">
-                <input
-                  type="radio"
-                  id="attend-yes"
-                  name="attendance"
-                  value="yes"
-                  required
-                />
+                <input type="radio" id="attend-yes" name="attendance" value="yes" required />
                 <label for="attend-yes">Да, буду!</label>
               </div>
               <div class="radio-option">
-                <input
-                  type="radio"
-                  id="attend-no"
-                  name="attendance"
-                  value="no"
-                />
+                <input type="radio" id="attend-no" name="attendance" value="no" />
                 <label for="attend-no">К сожалению, не смогу</label>
               </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="guests"
-              >Количество гостей (включая вас):</label
-            >
-            <input
-              type="number"
-              id="guests"
-              name="guests"
-              min="1"
-              max="10"
-              value="1"
-            />
+            <label for="guests">Количество гостей (включая вас):</label>
+            <input type="number" id="guests" name="guests" min="1" max="10" value="1" />
           </div>
 
-          <div id="guestDetailsContainer" class="guest-details-container">
-            <!-- Детали по гостям генерируются скриптом -->
-          </div>
+          <div id="guestDetailsContainer" class="guest-details-container"></div>
 
           <div class="form-group">
-            <label for="allergies"
-              >Аллергии или ограничения в еде?</label
-            >
+            <label for="allergies">Аллергии или ограничения в еде?</label>
             <textarea id="allergies" name="allergies" rows="3"></textarea>
           </div>
 
           <div class="form-group">
-            <label for="message"
-              >Сообщение Константину (необязательно):</label
-            >
+            <label for="message">Сообщение Константину (необязательно):</label>
             <textarea id="message" name="message" rows="3"></textarea>
           </div>
 
           <button type="submit">Отправить</button>
         </form>
 
-        <div
-          id="successMessage"
-          class="success-message"
-          style="display: none"
-        >
+        <div id="successMessage" class="success-message" style="display: none">
           Спасибо за ответ! Будем рады видеть вас на празднике.
         </div>
       </div>
