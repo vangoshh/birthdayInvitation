@@ -58,48 +58,53 @@
         line-height: 1.2;
       }
 
-      /* --- БЛОК С ЦИФРАМИ-МАСКАМИ --- */
+      /* --- БЛОК С ЦИФРАМИ И ФОТО --- */
       .numbers-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 20px; /* Расстояние между цифрами */
+        gap: 10px; 
         margin: 40px 0;
       }
 
-      .number-mask {
+      .number-box {
+        position: relative;
         width: 180px;
         height: 280px;
-        background-size: cover;
-        background-position: center;
-        
-        /* Магия: используем вашу цифру как трафарет для фото */
-        -webkit-mask-size: contain;
-        -webkit-mask-position: center;
-        -webkit-mask-repeat: no-repeat;
-        mask-size: contain;
-        mask-position: center;
-        mask-repeat: no-repeat;
+        /* Убираем overflow: hidden, чтобы цифры не обрезались, если они шире блока */
       }
 
-      /* Цифра 3 */
-      .digit-3 {
-        /* 1. Указываем фото, которое будет внутри */
-        background-image: url('media/photo_boy.jpg'); 
-        /* 2. Указываем вырезанную цифру как маску */
-        -webkit-mask-image: url('media/33.png');
-        mask-image: url('media/33.png');
+      /* Фотографии, которые лежат под цифрами */
+      .number-box img.photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Заполняет блок */
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1; /* Фото на заднем плане */
+        border-radius: 15px; /* Слегка скругляем фон */
       }
 
-      /* Цифра 0 */
-      .digit-0 {
-        /* 1. Указываем фото, которое будет внутри */
-        background-image: url('media/photo_man.jpg');
-        /* 2. Указываем вырезанную цифру как маску */
-        -webkit-mask-image: url('media/00.png');
-        mask-image: url('media/00.png');
+      /* Настройки кадрирования фото */
+      .box-3 img.photo {
+        object-position: 50% 30%; /* Фото мальчика */
+      }
+      .box-0 img.photo {
+        object-position: 50% 20%; /* Фото мужчины */
       }
 
+      /* Вырезанные цифры (33.PNG и 00.JPG) */
+      .number-box img.mask {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2; /* Цифра лежит ПОВЕРХ фото */
+        pointer-events: none;
+        object-fit: contain;
+      }
 
       /* --- ОСТАЛЬНЫЕ СТИЛИ (без изменений) --- */
       .header-divider {
@@ -325,14 +330,8 @@
       @media (max-width: 600px) {
         header h1 { font-size: 28px; }
         
-        .numbers-container {
-          gap: 10px;
-          margin: 20px 0;
-        }
-        .number-mask {
-          width: 120px;
-          height: 190px;
-        }
+        .numbers-container { gap: 5px; margin: 20px 0; }
+        .number-box { width: 130px; height: 200px; }
 
         .details-grid {
           flex-direction: column;
@@ -355,10 +354,25 @@
       <header>
         <h1>Юбилей<br>Константина</h1>
         
-        <!-- МАСКИ ЦИФР -->
+        <!-- БЛОК С НАЛОЖЕНИЕМ ФОТО И ЦИФР -->
         <div class="numbers-container">
-          <div class="number-mask digit-3"></div>
-          <div class="number-mask digit-0"></div>
+          
+          <!-- Цифра 3 -->
+          <div class="number-box box-3">
+            <!-- 1. Сначала идет фото (мальчик) -->
+            <img src="media/photo1.jpg" alt="Детство" class="photo" />
+            <!-- 2. Сверху кладем вырезанную цифру -->
+            <img src="media/33.PNG" alt="3" class="mask" />
+          </div>
+          
+          <!-- Цифра 0 -->
+          <div class="number-box box-0">
+            <!-- 1. Сначала идет фото (мужчина) -->
+            <img src="media/photo2.jpg" alt="Сейчас" class="photo" />
+            <!-- 2. Сверху кладем вырезанную цифру -->
+            <img src="media/00.JPG" alt="0" class="mask" />
+          </div>
+
         </div>
 
         <div class="header-divider"><span>🤍</span></div>
