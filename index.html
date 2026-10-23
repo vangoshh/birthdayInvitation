@@ -58,45 +58,50 @@
         line-height: 1.2;
       }
 
-      /* --- БЛОК С ФОТОГРАФИЯМИ (КРУГИ) --- */
-      .photos-container {
+      /* --- БЛОК С ЦИФРАМИ-МАСКАМИ --- */
+      .numbers-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 30px;
+        gap: 20px; /* Расстояние между цифрами */
         margin: 40px 0;
       }
 
-      .photo-circle {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%; /* Делает фото круглым */
-        overflow: hidden;
-        border: 2px solid #fff; /* Белая рамка вокруг */
-        box-shadow: 0 10px 25px rgba(0,0,0,0.08); /* Легкая тень */
-        position: relative;
+      .number-mask {
+        width: 180px;
+        height: 280px;
+        background-size: cover;
+        background-position: center;
+        
+        /* Магия: используем вашу цифру как трафарет для фото */
+        -webkit-mask-size: contain;
+        -webkit-mask-position: center;
+        -webkit-mask-repeat: no-repeat;
+        mask-size: contain;
+        mask-position: center;
+        mask-repeat: no-repeat;
       }
 
-      /* Немного наклоняем круги друг к другу, чтобы было стильно */
-      .photo-circle:nth-child(1) {
-        transform: rotate(-5deg);
-        z-index: 1;
-      }
-      
-      .photo-circle:nth-child(2) {
-        transform: rotate(5deg);
-        z-index: 2;
-        margin-left: -40px; /* Накладываем один на другой */
+      /* Цифра 3 */
+      .digit-3 {
+        /* 1. Указываем фото, которое будет внутри */
+        background-image: url('media/photo_boy.jpg'); 
+        /* 2. Указываем вырезанную цифру как маску */
+        -webkit-mask-image: url('media/33.png');
+        mask-image: url('media/33.png');
       }
 
-      .photo-circle img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Заполняет круг без искажений */
-        object-position: center 20%; /* Центрирует на лице */
+      /* Цифра 0 */
+      .digit-0 {
+        /* 1. Указываем фото, которое будет внутри */
+        background-image: url('media/photo_man.jpg');
+        /* 2. Указываем вырезанную цифру как маску */
+        -webkit-mask-image: url('media/00.png');
+        mask-image: url('media/00.png');
       }
 
-      /* --- ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ --- */
+
+      /* --- ОСТАЛЬНЫЕ СТИЛИ (без изменений) --- */
       .header-divider {
         display: flex;
         align-items: center;
@@ -124,7 +129,6 @@
         margin-top: 10px;
       }
 
-      /* --- КАРТОЧКИ --- */
       .card {
         background-color: #fff;
         border: 1px solid var(--border-color);
@@ -145,7 +149,6 @@
         margin-bottom: 30px;
       }
 
-      /* --- ДЕТАЛИ --- */
       .details-grid {
         display: flex;
         justify-content: center;
@@ -199,7 +202,6 @@
         color: var(--text-dark);
       }
 
-      /* --- КАРТА --- */
       .map-wrapper iframe {
         width: 100%;
         height: 350px;
@@ -220,7 +222,6 @@
         margin-top: 20px;
       }
 
-      /* --- КНОПКИ --- */
       .btn {
         display: inline-block;
         background-color: transparent;
@@ -261,7 +262,6 @@
         background-color: #3a211f;
       }
 
-      /* --- ФОРМА (RSVP) --- */
       .form-group {
         margin-bottom: 25px;
       }
@@ -322,16 +322,17 @@
         border: 1px solid var(--border-color);
       }
 
-      /* --- АДАПТИВНОСТЬ --- */
       @media (max-width: 600px) {
         header h1 { font-size: 28px; }
         
-        .photos-container { gap: 10px; }
-        .photo-circle {
-          width: 140px;
-          height: 140px;
+        .numbers-container {
+          gap: 10px;
+          margin: 20px 0;
         }
-        .photo-circle:nth-child(2) { margin-left: -20px; }
+        .number-mask {
+          width: 120px;
+          height: 190px;
+        }
 
         .details-grid {
           flex-direction: column;
@@ -351,18 +352,13 @@
   <body>
     <div class="container">
       
-      <!-- ЗАГОЛОВОК -->
       <header>
         <h1>Юбилей<br>Константина</h1>
         
-        <!-- БЛОК С ФОТОГРАФИЯМИ -->
-        <div class="photos-container">
-          <div class="photo-circle">
-            <img src="media/3.png" alt="Детство" />
-          </div>
-          <div class="photo-circle">
-            <img src="media/0.png" alt="Сейчас" />
-          </div>
+        <!-- МАСКИ ЦИФР -->
+        <div class="numbers-container">
+          <div class="number-mask digit-3"></div>
+          <div class="number-mask digit-0"></div>
         </div>
 
         <div class="header-divider"><span>🤍</span></div>
@@ -370,7 +366,6 @@
         <p>30 лет</p>
       </header>
 
-      <!-- ДЕТАЛИ -->
       <div class="card">
         <h2>Детали встречи</h2>
         
@@ -397,7 +392,6 @@
         </div>
       </div>
 
-      <!-- КАРТА -->
       <div class="card">
         <h3>Локация</h3>
         <div class="map-wrapper">
@@ -413,7 +407,6 @@
         </div>
       </div>
 
-      <!-- ФОРМА -->
       <div class="card">
         <h2>Подтверждение</h2>
         <p style="text-align: center; font-size: 14px; color: var(--text-light); margin-bottom: 30px;">
