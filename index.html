@@ -174,7 +174,7 @@
         margin-top: 5px;
       }
 
-      /* --- НОВЫЙ БЛОК ДЛЯ ВИДЕО --- */
+      /* --- БЛОК ДЛЯ ВИДЕО --- */
       .video-container {
         width: 100%;
         max-width: 700px;
@@ -189,7 +189,6 @@
         display: block;
         width: 100%;
         height: auto;
-        /* Делаем видео чуть приглушенным, чтобы не выбивалось из темной темы */
         filter: grayscale(20%) contrast(110%) brightness(0.9);
         transition: filter 0.5s ease;
       }
@@ -366,6 +365,11 @@
         background-color: #a05c45;
       }
 
+      button[type="submit"]:disabled {
+        background-color: #5a4036;
+        cursor: not-allowed;
+      }
+
       .form-group {
         margin-bottom: 25px;
       }
@@ -381,7 +385,6 @@
       }
 
       .form-group input[type="text"],
-      .form-group input[type="number"],
       .form-group textarea {
         width: 100%;
         padding: 12px 15px;
@@ -492,7 +495,6 @@
         </div>
       </div>
 
-      <!-- БЛОК С ВИДЕО -->
       <div class="video-container fade-in delay-2">
         <video 
           src="media/video.mp4" 
@@ -558,8 +560,7 @@
         <form id="rsvpForm" action="https://formspree.io/f/xrppgnkb" method="POST">
           
           <input type="hidden" name="_subject" value="RSVP на юбилей Константина" />
-          <input type="hidden" name="_next" value="https://vangoshh.github.io/birthdayInvitation/?success=true" />
-
+          
           <div class="form-group">
             <label for="name">Ваше имя</label>
             <input type="text" id="name" name="name" required placeholder="Имя и фамилия" />
@@ -579,10 +580,7 @@
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="guests">Количество гостей (включая вас)</label>
-            <input type="number" id="guests" name="guests" min="1" max="10" value="1" />
-          </div>
+          <!-- Блок с количеством гостей удален -->
 
           <div class="form-group">
             <label for="message">Сообщение имениннику</label>
@@ -599,6 +597,7 @@
       
     </div>
 
+    <!-- СКРИПТ ТАЙМЕРА -->
     <script>
       const eventDate = new Date(2026, 10, 15, 17, 0, 0).getTime();
 
@@ -631,6 +630,43 @@
         document.getElementById("hours-label").innerText = getDeclension(hours, ['Час', 'Часа', 'Часов']);
         document.getElementById("minutes-label").innerText = getDeclension(minutes, ['Минута', 'Минуты', 'Минут']);
       }, 1000);
+    </script>
+
+    <!-- СКРИПТ БЫСТРОЙ ОТПРАВКИ ФОРМЫ (AJAX) -->
+    <script>
+      document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+        e.preventDefault(); 
+        
+        const form = e.target;
+        const button = form.querySelector('button[type="submit"]');
+        const originalText = button.innerText;
+        
+        button.innerText = 'Отправка...';
+        button.disabled = true;
+        
+        const formData = new FormData(form);
+        
+        fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        }).then(response => {
+          if (response.ok) {
+            form.style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+          } else {
+            alert('Что-то пошло не так. Попробуйте еще раз.');
+            button.innerText = originalText;
+            button.disabled = false;
+          }
+        }).catch(error => {
+          alert('Ошибка сети. Пожалуйста, проверьте подключение к интернету.');
+          button.innerText = originalText;
+          button.disabled = false;
+        });
+      });
     </script>
   </body>
 </html>
