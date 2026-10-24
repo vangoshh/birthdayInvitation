@@ -114,7 +114,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 0 30px 0; /* Отступ снизу, чтобы текст не прилипал */
+        margin: 0 0 30px 0; 
       }
       
       .header-divider::before,
@@ -132,7 +132,6 @@
         color: var(--accent-color); 
       }
 
-      /* --- НОВЫЙ БЛОК С ТЕКСТОМ ПРИГЛАШЕНИЯ --- */
       .intro-text {
         font-family: var(--font-serif);
         font-size: 20px;
@@ -145,7 +144,6 @@
         opacity: 0.9;
       }
 
-      /* --- ТАЙМЕР --- */
       .countdown-container {
         display: flex;
         justify-content: center;
@@ -174,6 +172,30 @@
         letter-spacing: 1px;
         color: var(--text-muted);
         margin-top: 5px;
+      }
+
+      /* --- НОВЫЙ БЛОК ДЛЯ ВИДЕО --- */
+      .video-container {
+        width: 100%;
+        max-width: 700px;
+        margin: 0 auto 40px auto;
+        border-radius: 4px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      }
+
+      .video-container video {
+        display: block;
+        width: 100%;
+        height: auto;
+        /* Делаем видео чуть приглушенным, чтобы не выбивалось из темной темы */
+        filter: grayscale(20%) contrast(110%) brightness(0.9);
+        transition: filter 0.5s ease;
+      }
+
+      .video-container video:hover {
+        filter: grayscale(0%) contrast(100%) brightness(1);
       }
 
       /* --- КАРТОЧКИ --- */
@@ -451,12 +473,10 @@
         <div class="header-divider"><span>◆</span></div>
       </header>
 
-      <!-- ТЕКСТ ПРИГЛАШЕНИЯ (ВАРИАНТ 3) -->
       <div class="intro-text fade-in delay-1">
         «Тридцать — это не просто цифра, это начало нового этапа. Приглашаю вас отметить этот рубеж в приятной атмосфере. Хорошая музыка, вкусная еда и отличная компания прилагаются. До встречи на празднике!»
       </div>
 
-      <!-- ТАЙМЕР -->
       <div class="countdown-container fade-in delay-2">
         <div class="countdown-item">
           <div class="countdown-number" id="days">00</div>
@@ -470,6 +490,19 @@
           <div class="countdown-number" id="minutes">00</div>
           <div class="countdown-label" id="minutes-label">Минут</div>
         </div>
+      </div>
+
+      <!-- БЛОК С ВИДЕО -->
+      <div class="video-container fade-in delay-2">
+        <video 
+          src="media/video.mp4" 
+          autoplay 
+          muted 
+          loop 
+          playsinline
+          preload="auto">
+          Ваш браузер не поддерживает видео.
+        </video>
       </div>
 
       <div class="card fade-in delay-3">
@@ -566,7 +599,6 @@
       
     </div>
 
-    <!-- СКРИПТ ТАЙМЕРА СО СКЛОНЕНИЕМ -->
     <script>
       const eventDate = new Date(2026, 10, 15, 17, 0, 0).getTime();
 
